@@ -11,12 +11,13 @@ namespace JornadaMilhas.Test;
 
 public class ExercicioTeste
 {
-    [Fact]
-    public void TesteNomeInicializadoCorretamente()
+    [Theory]
+    [InlineData("Música Teste")]
+    [InlineData("Outra Música")]
+    [InlineData("Mais uma Música")]
+    [InlineData("Azul da cor do mar")]
+    public void InicializaNomeCorretamenteQuandoCastradaNovaMusica(string nome)
     {
-        //Arrange
-        string nome = "Azul da cor do mar";
-
         //Act
         Musica musica = new Musica(nome);
 
@@ -24,39 +25,42 @@ public class ExercicioTeste
         Assert.Equal(nome, musica.Nome);
     }
 
-    [Fact]
-    public void TesteIdInicializadoCorretamente()
+    [Theory]
+    [InlineData("Música Teste", "Nome: Música Teste")]
+    [InlineData("Outra Música", "Nome: Outra Música")]
+    [InlineData("Mais uma Música", "Nome: Mais uma Música")]
+    public void ExibeDadosDaMusicaCorretamenteQuandoChamadoMetodoExibeFichaTecnica(string nome, string saidaEsperada)
     {
-        //Arrange
-        string nome = "Azul da cor do mar";
-        int id = 1;
+        // Arrange
+        Musica musica = new Musica(nome);
+        var stringWriter = new StringWriter();
+        Console.SetOut(stringWriter);
 
-        //Act
-        Musica musica = new Musica(nome) 
-        {
-            Id = id,
-        };
+        // Act
+        musica.ExibirFichaTecnica();
+        string saidaAtual = stringWriter.ToString().Trim();
 
-        //Assert
-        Assert.Equal(1, musica.Id);
+        // Assert
+        Assert.Equal(saidaEsperada, saidaAtual);
     }
 
-    [Fact]
-    public void ValidaSaidaDoMetodoToString()
+    [Theory]
+    [InlineData(1, "Música Teste", "Id: 1 Nome: Música Teste")]
+    [InlineData(2, "Outra Música", "Id: 2 Nome: Outra Música")]
+    [InlineData(3, "Mais uma Música", "Id: 3 Nome: Mais uma Música")]
+    [InlineData(4, "Azul da cor do mar", "Id: 4 Nome: Azul da cor do mar")]
+    public void ExibeDadosDaMusicaCorretamenteQuandoChamadoMetodoToString(int id, string nome, string toStringEsperado)
     {
-        //Arrange
-        string nome = "Azul da cor do mar";
-        int id = 1;
+        // Arrange
         Musica musica = new Musica(nome)
         {
-            Id = id,
+            Id=id,
         };
-        string toStringEsperado = $"Id: {id} Nome: {nome}";
 
-        //Act
+        // Act
         string resultado = musica.ToString();
 
-        //Assert
+        // Assert
         Assert.Equal(toStringEsperado, resultado);
     }
 }
