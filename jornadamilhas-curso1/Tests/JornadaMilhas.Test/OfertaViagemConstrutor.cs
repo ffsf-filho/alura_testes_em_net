@@ -70,4 +70,20 @@ public class OfertaViagemConstrutor
         //assert
         Assert.Contains( "O preço da oferta de viagem deve ser maior que zero.", oferta.Erros.Sumario);
     }
+
+    [Fact]
+    public void RetornaTresErrosDeValidacaoQuandoRoraPeriodoEPrecoSaoInvalidaos()
+    {
+        //arrange
+        Rota rota = null;
+        Periodo periodo = new Periodo(new DateTime(2024, 6, 1), new DateTime(2024, 5, 10)); ;
+        double preco = -100;
+        int quantidadeEsperada = 3;
+
+        //act
+        OfertaViagem oferta = new OfertaViagem(rota, periodo, preco);
+
+        //assert
+        Assert.Equal(quantidadeEsperada, oferta.Erros.Count());
+    }
 }

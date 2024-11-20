@@ -1,4 +1,5 @@
-﻿using JornadaMilhas.Test.Exercicio;
+﻿using Bogus;
+using JornadaMilhas.Test.Exercicio;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
 using Microsoft.IdentityModel.Protocols;
 using System;
@@ -89,5 +90,50 @@ public class ExercicioTeste
 
         // Assert
         Assert.Equal("Artista desconhecido", musica.Artista);
+    }
+
+    [Fact]
+    public void RetornaToStringCorretamenteQuandoMusicaEhCadastrada()
+    {
+        // Arrange
+        var faker = new Faker();
+        var id = faker.Random.Int();
+        var nome = faker.Music.Genre();
+        var saidaEsperada = $"Id: {id} Nome: {nome}";
+        var musica = new Musica(nome) { Id = id };
+
+        // Act
+        var result = musica.ToString();
+
+        // Assert
+        Assert.Equal(saidaEsperada, result);
+    }
+
+    [Fact]
+    public void RetornaArtistaDesconhecidoQuandoInseridoDadoNuloNoArtista()
+    {
+        // Arrange
+        var nome = new Faker().Music.Genre();
+        var musica = new Musica(nome) { Artista = null };
+
+        // Act
+        var artista = musica.Artista;
+
+        // Assert
+        Assert.Equal("Artista desconhecido", artista);
+    }
+
+    [Fact]
+    public void RetornoAnoDeLancamentoNuloQuandoValorInseridoMenorQueZero()
+    {
+        // Arrange
+        var nome = new Faker().Music.Genre();
+        var musica = new Musica(nome) { AnoLancamento = -1 };
+
+        // Act
+        var anoLancamento = musica.AnoLancamento;
+
+        // Assert
+        Assert.Null(anoLancamento);
     }
 }
