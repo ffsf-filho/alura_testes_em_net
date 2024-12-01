@@ -1,20 +1,19 @@
 using JornadaMilhas.Dados;
 using JornadaMilhasV1.Modelos;
 using Microsoft.EntityFrameworkCore;
+using Xunit.Abstractions;
 
 namespace JornadaMilhas.Test.Integracao;
 
-public class OfertaViagemDalAdicionar
+[Collection(nameof(ContextoCollection))]
+public class OfertaViagemDalAdicionar 
 {
     private readonly JornadaMilhasContext context;
 
-    public OfertaViagemDalAdicionar()
+    public OfertaViagemDalAdicionar(ITestOutputHelper outputHelper, ContextoFixture contextoFixture)
     {
-        var options = new DbContextOptionsBuilder<JornadaMilhasContext>()
-            .UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=JornadaMilhas;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False")
-            .Options;
-
-        context = new JornadaMilhasContext(options);
+        context = contextoFixture.Context;
+        outputHelper.WriteLine(context.GetHashCode().ToString());
     }
 
     [Fact]
