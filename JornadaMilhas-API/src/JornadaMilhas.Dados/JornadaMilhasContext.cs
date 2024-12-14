@@ -14,7 +14,7 @@ public class JornadaMilhasContext : IdentityDbContext
     }
     public JornadaMilhasContext(DbContextOptions<JornadaMilhasContext> options) : base(options) { }
 
-    private string connectionString = "Server=sqlserver;Database=JornadaMilhasV3;User Id=sa;Password=Alura#2024;Encrypt=false;TrustServerCertificate=true;MultipleActiveResultSets=true;";
+    private string connectionString = "Server=localhost,1438;Database=JornadaMilhasV3;User Id=sa;Password=ssExpress1823;Encrypt=false;TrustServerCertificate=true;MultipleActiveResultSets=true;";
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
 
