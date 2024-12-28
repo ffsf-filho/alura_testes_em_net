@@ -38,5 +38,23 @@ namespace Alura.LeilaoOnline.Selenium.Testes
             //Assert
             Assert.Contains("Próximos Leilões", driver.PageSource);
         }
+
+        [Fact]
+        public void DadoChromeAbertoFormRegistroNaoDeveMostrarMensagensDeErro()
+        {
+            //arrange
+
+            //act
+            driver.Navigate().GoToUrl("http://localhost:5000");
+
+            //assert
+            var form = driver.FindElement(By.TagName("form"));
+            var spans = form.FindElements(By.TagName("span"));
+
+            foreach (var span in spans)
+            {
+                Assert.True(string.IsNullOrEmpty(span.Text));
+            }
+        }
     }
 }
