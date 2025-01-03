@@ -2,8 +2,6 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Alura.LeilaoOnline.Selenium.Fixtures
 {
@@ -15,6 +13,7 @@ namespace Alura.LeilaoOnline.Selenium.Fixtures
         public TestFixture()
         {
             Driver = new ChromeDriver(TestHelper.PastaDoExecutavel);
+            //Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
         }
 
         //TearDown

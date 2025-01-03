@@ -1,9 +1,6 @@
 ﻿using Alura.LeilaoOnline.Selenium.Fixtures;
 using Alura.LeilaoOnline.Selenium.PageObjects;
 using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Xunit;
 
 namespace Alura.LeilaoOnline.Selenium.Testes
@@ -15,7 +12,7 @@ namespace Alura.LeilaoOnline.Selenium.Testes
 
         public AoEfetuarLogin(TestFixture fixture)
         {
-            driver = fixture.Driver;    
+            driver = fixture.Driver;
         }
 
         [Fact]

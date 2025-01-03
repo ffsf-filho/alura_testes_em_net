@@ -1,10 +1,8 @@
-﻿using System;
-using OpenQA.Selenium;
-using Xunit;
+﻿using Alura.LeilaoOnline.Selenium.Fixtures;
 using Alura.LeilaoOnline.Selenium.PageObjects;
-using Alura.LeilaoOnline.Selenium.Fixtures;
-using System.Threading;
-using System.Linq;
+using OpenQA.Selenium;
+using System;
+using Xunit;
 
 namespace Alura.LeilaoOnline.Selenium.Testes
 {

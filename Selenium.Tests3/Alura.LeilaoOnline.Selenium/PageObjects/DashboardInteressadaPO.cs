@@ -1,10 +1,7 @@
 ﻿using Alura.LeilaoOnline.Selenium.Helpers;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
-using OpenQA.Selenium.Support.UI;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
 
 namespace Alura.LeilaoOnline.Selenium.PageObjects
 {
@@ -30,7 +27,7 @@ namespace Alura.LeilaoOnline.Selenium.PageObjects
         }
 
         public void PesquisarLeiloes(
-            List<string> categorias, 
+            List<string> categorias,
             string termo,
             bool emAndamento)
         {
