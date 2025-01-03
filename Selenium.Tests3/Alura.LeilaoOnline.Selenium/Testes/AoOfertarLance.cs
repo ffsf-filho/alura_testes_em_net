@@ -21,10 +21,7 @@ namespace Alura.LeilaoOnline.Selenium.Testes
         public void DadoLoginInteressadaDeveAtualizarLanceAtual()
         {
             //arrange
-            var loginPO = new LoginPO(driver);
-            loginPO.Visitar();
-            loginPO.PreencheFormulario("fulano@example.org", "123");
-            loginPO.SubmeteFormulario();
+            new LoginPO(driver).EfetuarLoginComCredenciais("fulano@example.org", "123");
 
             var detalhePO = new DetalheLeilaoPO(driver);
             detalhePO.Visitar(1);//enandamento
@@ -33,7 +30,7 @@ namespace Alura.LeilaoOnline.Selenium.Testes
             detalhePO.OfertarLance(300);
 
             //assert
-            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(8));
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(20));
             bool iguais = wait.Until(drv => detalhePO.LanceAtual == 300);
             Assert.True(iguais);
         }

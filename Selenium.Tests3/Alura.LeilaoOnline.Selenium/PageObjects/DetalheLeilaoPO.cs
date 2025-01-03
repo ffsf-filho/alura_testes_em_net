@@ -35,7 +35,7 @@ namespace Alura.LeilaoOnline.Selenium.PageObjects
         public void OfertarLance(double valor)
         {
 
-            //driver.FindElement(byInputValor).Clear();
+            driver.FindElement(byInputValor).Clear();
             driver.FindElement(byInputValor).SendKeys(valor.ToString());
             driver.FindElement(byBotaoOfertar).Click();
         }

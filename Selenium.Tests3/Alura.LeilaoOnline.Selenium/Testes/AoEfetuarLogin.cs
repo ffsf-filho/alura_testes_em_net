@@ -19,12 +19,13 @@ namespace Alura.LeilaoOnline.Selenium.Testes
         public void DadoCredenciaisValidasDeveIrParaDashboard()
         {
             //arrange
-            var loginPO = new LoginPO(driver);
-            loginPO.Visitar();
-            loginPO.PreencheFormulario("fulano@example.org", "123");
 
             //act
-            loginPO.SubmeteFormulario();
+            new LoginPO(driver)
+                .Visitar()
+                .InformarEmail("fulano@example.org")
+                .InformarSenha("123")
+                .EfetuarLogin();
 
             //assert
             Assert.Contains("Dashboard", driver.Title);
@@ -34,12 +35,9 @@ namespace Alura.LeilaoOnline.Selenium.Testes
         public void DadoCrendenciasInvalidasDeveContinuarLogin()
         {
             //arrange
-            var loginPO = new LoginPO(driver);
-            loginPO.Visitar();
-            loginPO.PreencheFormulario("fulano@example.org", "");
 
             //act
-            loginPO.SubmeteFormulario();
+            new LoginPO(driver).EfetuarLoginComCredenciais("fulano@example.org", "1232");
 
             //assert
             Assert.Contains("Login", driver.PageSource);

@@ -20,10 +20,7 @@ namespace Alura.LeilaoOnline.Selenium.Testes
         public void DadoLoginAdminEInfoValidasDeveCadastrarLeilao()
         {
             //arrange
-            var loginPO = new LoginPO(driver);
-            loginPO.Visitar();
-            loginPO.PreencheFormulario("admin@example.org", "123");
-            loginPO.SubmeteFormulario();
+            new LoginPO(driver).EfetuarLoginComCredenciais("admin@example.org", "123");
 
             var novoLeilaoPO = new NovoLeilaoPO(driver);
             novoLeilaoPO.Visitar();
@@ -32,7 +29,7 @@ namespace Alura.LeilaoOnline.Selenium.Testes
                 "Nullam aliquet condimentum elit vitae volutpat. Vivamus ut nisi venenatis, facilisis odio eget, lobortis tortor. Cras mattis sit amet dolor id bibendum. Nulla turpis justo, porttitor eget leo vel, dictum tempor diam. Sed dui arcu, feugiat nec placerat ac, suscipit a mi. Etiam eget risus et tellus placerat tincidunt at ut lorem.",
                 "Item de Colecionador",
                 4000,
-                "c:\\imagens\\colecao1.jpg",
+                "d:\\imagens\\colecao1.jpeg",
                 DateTime.Now.AddDays(20),
                 DateTime.Now.AddDays(40)
             );
